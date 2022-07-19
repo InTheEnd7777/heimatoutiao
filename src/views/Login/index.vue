@@ -64,12 +64,14 @@ export default {
       isshow: false
     }
   },
+  // created () {
+  //   // console.log(this.$store.commit())
+  // },
   methods: {
     onClickLeft () {
       // console.log(this)
       this.$router.back()
     },
-
     async login () {
       this.$toast.loading({
         message: '正在加载中....',
@@ -77,7 +79,7 @@ export default {
       })
       try {
         const res = await login(this.mobile, this.code)
-        this.$router.push('/profile')
+        this.$router.push('/my')
         this.$toast.success('登录成功')
         this.$store.commit('setUser', res.data.data)
       } catch (e) {

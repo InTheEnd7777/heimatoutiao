@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import store from '@/store'
 /**
  *
  * @param {string} mobile
@@ -22,5 +23,15 @@ export const sendCode = (mobile) => {
   return request({
     method: 'GET',
     url: `/v1_0/sms/codes/${mobile}`
+  })
+}
+
+// 获取个人资料
+export const getuserinfo = () => {
+  return request({
+    url: '/v1_0/user',
+    headers: {
+      Authorization: `Bearer ${store.state.user.token}`
+    }
   })
 }
