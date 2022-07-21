@@ -56,7 +56,7 @@ import { getALLchannels } from '@/api'
 export default {
   data () {
     return {
-      isshow: true,
+      isshow: false,
       ALLchannels: [],
       isEdit: false
     }
