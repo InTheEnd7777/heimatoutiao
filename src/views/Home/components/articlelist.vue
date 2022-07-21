@@ -83,6 +83,7 @@ export default {
 
         // 更新页码
         this.pre_timestamp = data.data.pre_timestamp
+        // console.log(this.pre_timestamp)
       } catch (error) {
         this.error = true
       } finally {
@@ -103,17 +104,17 @@ export default {
 }
 :deep(.van-tabs__wrap) {
   position: sticky;
-  top: 92px;
+  top: 1.15rem;
   left: 0;
   z-index: 99;
 }
 .toutiao-gengduo {
   position: fixed;
-  top: 92px;
+  top: 1.15rem;
 }
 
 :deep(.van-tabs__content) {
-  max-height: calc(100vh - 92px - 82px - 100px);
+  max-height: calc(100vh - 1.15rem - 1.025rem - 1.25rem);
   overflow: auto;
 }
 </style>

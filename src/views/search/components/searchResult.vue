@@ -1,6 +1,14 @@
 <template>
   <div>
-    <van-list :finished="finished" finished-text="没有更多了">
+    <van-list
+      @load="onLoad"
+      :offset="300"
+      :finished="isfinished"
+      finished-text="没有更多了"
+      v-model="loading"
+      :error.sync="error"
+      error-text="请求失败，点击重新加载"
+    >
       <van-cell v-for="item in mylist" :key="item.art_id" :title="item.title" />
     </van-list>
   </div>
@@ -12,7 +20,11 @@ export default {
   data () {
     return {
       mylist: [],
-      finished: false
+      page: 1,
+      isfinished: false,
+      loading: false,
+      error: false,
+      refreshing: false
     }
   },
   props: {
@@ -27,12 +39,28 @@ export default {
   methods: {
     async getsearchresults () {
       try {
-        const res = await getsearchresults(1, 20, this.xianshi)
+        const res = await getsearchresults(this.page, this.xianshi)
         // console.log(res)
         this.mylist = res.data.data.results
         // console.log(this.mylist)
-        this.finished = true
       } catch (error) {}
+    },
+    async onLoad () {
+      try {
+        this.page++
+        const {
+          data: { data }
+        } = await getsearchresults(this.page, this.xianshi)
+        // console.log(data)
+        if (data.results.length === 0) {
+          this.isfinished = true
+        }
+        this.mylist.push(...data.results)
+      } catch (error) {
+        this.error = true
+      } finally {
+        this.loading = false
+      }
     }
   }
 }

@@ -15,7 +15,11 @@
       </van-cell>
     </van-cell-group>
     <div>
-      <van-cell-group v-for="(item, index) in list" :key="index">
+      <van-cell-group
+        v-for="(item, index) in list"
+        :key="index"
+        @click="sou(item)"
+      >
         <van-cell :title="item">
           <template>
             <van-icon name="cross" @click="dellishi(item)" />
@@ -51,6 +55,11 @@ export default {
     delall (val) {
       removefanfan(val)
       this.list = []
+    },
+    sou (item) {
+      this.$parent.keywords = item
+
+      // this.$parent.this.getsousuojianyi()
     }
   }
 }

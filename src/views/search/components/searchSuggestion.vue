@@ -10,7 +10,7 @@
           <span v-html="item"></span>
         </template>
         <template #icon>
-          <van-icon name="search" class="iconsearch" ></van-icon>
+          <van-icon name="search" class="iconsearch"></van-icon>
         </template>
       </van-cell>
     </van-cell-group>

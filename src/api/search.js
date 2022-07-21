@@ -7,13 +7,12 @@ export const getsousuojianyi = (q) => {
     params: { q }
   })
 }
-export const getsearchresults = (page, perpage, q) => {
+export const getsearchresults = (page, q) => {
   return request({
     url: '/v1_0/search',
     params: {
-      page: page,
-      per_page: perpage,
-      q: q
+      page,
+      q
     }
   })
 }
