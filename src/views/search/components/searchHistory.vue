@@ -58,7 +58,7 @@ export default {
     },
     sou (item) {
       this.$parent.keywords = item
-
+      this.$parent.isShowSearchResults = true
       // this.$parent.this.getsousuojianyi()
     }
   }

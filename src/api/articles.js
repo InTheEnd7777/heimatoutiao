@@ -8,3 +8,8 @@ export const getNewList = (channelid, timestamp) => {
     }
   })
 }
+export const getNewsDetails = (articleId) => {
+  return request({
+    url: `/v1_0/articles/${articleId}`
+  })
+}
