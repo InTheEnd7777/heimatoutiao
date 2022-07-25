@@ -109,7 +109,8 @@ export default {
     },
     async getuserinfo () {
       if (this.islogin) {
-        // const res = await getuserinfo()
+        // const res =
+        // await getuserinfo()
         // console.log(res)
         try {
           const {

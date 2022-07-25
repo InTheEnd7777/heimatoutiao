@@ -8,7 +8,6 @@ import Vant from 'vant'
 import 'vant/lib/index.css'
 import 'amfe-flexible/index'
 import './assets/font/iconfont.css'
-
 Vue.use(Vant)
 Vue.config.productionTip = false
 

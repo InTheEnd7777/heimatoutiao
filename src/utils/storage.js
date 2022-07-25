@@ -1,6 +1,9 @@
 class Storage {
   set (key, value) {
-    if (typeof value === 'object') {
+    if (
+      Object.prototype.toString.call(value) === '[object Object]' ||
+      Object.prototype.toString.call(value) === '[object Array]'
+    ) {
       value = JSON.stringify(value)
     }
     localStorage.setItem(key, value)
@@ -19,6 +22,5 @@ class Storage {
     localStorage.removeItem(key)
   }
 }
-
 const storage = new Storage()
 export default storage

@@ -7,6 +7,10 @@ const routes = [
   { path: '/login', component: () => import('@/views/Login') },
   { path: '/search', component: () => import('@/views/search') },
   {
+    path: '/detail/:article_id',
+    component: () => import('@/views/Home/components/detail')
+  },
+  {
     path: '/',
     component: () => import('@/views/Layout'),
     redirect: '/home',

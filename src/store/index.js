@@ -10,9 +10,9 @@ export default new Vuex.Store({
   getters: {},
   // 修改数据得地方
   mutations: {
-    setUser (state, paylode) {
-      state.user = paylode
-      setToken(paylode)
+    setUser (state, payload) {
+      state.user = payload
+      setToken(payload)
     }
   },
 

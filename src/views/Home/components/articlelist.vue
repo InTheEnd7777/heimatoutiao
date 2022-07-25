@@ -55,6 +55,7 @@ export default {
       try {
         const { data } = await getNewList(this.id, +new Date())
         this.mylist = data.data.results
+        // console.log(data)
         this.pre_timestamp = data.data.pre_timestamp
       } catch (error) {
         const status = error.response.status
