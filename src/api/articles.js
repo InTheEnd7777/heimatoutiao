@@ -46,7 +46,8 @@ export const NoFollowusers = (target) => {
 export const Favoritearticles = (target) => {
   return request({
     url: '/v1_0/article/collections',
-    headers: { target }
+    method: 'POST',
+    data: { target }
   })
 }
 /**

@@ -24,6 +24,7 @@
                 type="default"
                 class="send-sms-btn"
                 native-type="button"
+                @click="btnuser"
                 >编辑资料</van-button
               >
             </van-row>
@@ -106,6 +107,9 @@ export default {
     },
     gologin () {
       this.$router.push('/login')
+    },
+    btnuser () {
+      this.$router.push('/user')
     },
     async getuserinfo () {
       if (this.islogin) {

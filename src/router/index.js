@@ -6,6 +6,7 @@ const routes = [
   // { path: '/', redirect: '/login' },/*  */
   { path: '/login', component: () => import('@/views/Login') },
   { path: '/search', component: () => import('@/views/search') },
+  { path: '/user', component: () => import('@/views/My/user') },
   {
     path: '/detail/:article_id',
     component: () => import('@/views/Home/components/detail')
@@ -16,7 +17,16 @@ const routes = [
     redirect: '/home',
     children: [
       { path: '/home', component: () => import('@/views/Home') },
-      { path: '/my', component: () => import('@/views/My') },
+      {
+        path: '/my',
+        component: () => import('@/views/My'),
+        children: [
+          {
+            path: '/my/updatePortrait',
+            component: () => import('@/views/My/user/updatePortrait')
+          }
+        ]
+      },
       { path: '/qa', component: () => import('@/views/QA') },
       { path: '/video', component: () => import('@/views/Video') }
     ]

@@ -74,13 +74,9 @@
         </van-col>
         <!-- 点赞收藏 -->
         <van-col span="12" class="q3">
-          <van-icon name="chat-o" badge="9" />
+          <van-icon name="chat-o" :badge="articleList.comm_count" />
           <div>
-            <van-icon
-              v-if="!articleList.is_collected"
-              name="star-o"
-              @click="shoucang"
-            />
+            <van-icon v-if="!collect" name="star-o" @click="shoucang" />
             <van-icon
               name="star"
               v-else
@@ -132,7 +128,11 @@
                 :style="{ height: '100%' }"
               >
                 <div>
-                  <van-nav-bar title="暂无回复" />
+                  <van-nav-bar
+                    :title="
+                      list1.length === 0 ? '暂无回复' : list1.length + '条回复'
+                    "
+                  />
                 </div>
                 <div class="z1">
                   <van-row>
@@ -246,6 +246,7 @@ import {
 } from '@/api'
 import './github-markdown.css'
 export default {
+  name: 'aaaa',
   data () {
     return {
       showShare: false,
@@ -274,7 +275,8 @@ export default {
       pinglun: [],
       comOne: [],
       list: {},
-      list1: []
+      list1: [],
+      collect: ''
     }
   },
   created () {
@@ -306,7 +308,7 @@ export default {
         this.articleList = res.data.data
         console.log(this.articleList)
         this.timer = dayjs(this.articleList.pubdate).fromNow()
-
+        this.collect = res.data.data.is_collected
         // console.log(this.$route)
       } catch (error) {}
     },
@@ -315,6 +317,7 @@ export default {
       try {
         this.loading = true
         await Followusers(this.articleList.aut_id)
+        console.log(this.articleList.aut_id)
         this.loading = false
         // this.$toast.success('关注成功')
         this.getNewsDetails()
@@ -359,19 +362,19 @@ export default {
           data: { data }
         } = await getreviewsPL('c', id)
         this.list1 = data.results
-        console.log(this.list)
-        // console.log(this.list1)
+        // console.log(this.list)
+        console.log(this.list1)
       } catch (error) {}
     },
     // 收藏
     async shoucang () {
-      if (!this.articleList.is_collected) {
+      if (!this.collect) {
         try {
           // this.loading = true
           await Favoritearticles(this.articleList.art_id)
           // this.loading = false
           // this.$toast.success('收藏成功')
-          this.getNewsDetails()
+          this.collect = !this.collect
         } catch (error) {
           this.$toast.success('请刷新或者登录重试')
           // this.isshow = true

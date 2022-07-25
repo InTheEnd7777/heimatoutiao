@@ -35,3 +35,29 @@ export const getuserinfo = () => {
     }
   })
 }
+// 获取用户个人资料
+export const Getuserprofile = () => {
+  return request({
+    url: '/v1_0/user/profile'
+  })
+}
+// 编辑个人资料
+export const editinformation = (name, gender, birthday) => {
+  return request({
+    url: '/v1_0/user/profile',
+    method: 'PATCH',
+    data: {
+      name,
+      gender,
+      birthday
+    }
+  })
+}
+// 编辑用户照片资料（头像、身份证照片）
+export const updatePortrait = (photo) => {
+  return request({
+    url: '/v1_0/user/photo',
+    method: 'PATCH',
+    data: photo
+  })
+}
